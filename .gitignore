@@ -19,3 +19,8 @@ tags
 # Persistent undo
 [._]*.un~
 
+# Ignore built script
+bin/gomgr
+
+# Ignore auto-generated argument parser
+src/utils/args.bash
