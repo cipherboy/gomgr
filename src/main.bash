@@ -4,6 +4,9 @@
 # See: https://github.com/cipherboy/gomgr for more information
 
 function gomgr() {
+  # [ stage: variables ] #
+  . utils/globals.bash
+
   # [ stage: functions ] #
   . utils/args.bash
 
