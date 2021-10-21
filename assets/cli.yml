@@ -6,9 +6,6 @@ arguments:
     description: gomgr command to run
     type: Subparser
     whitelist:
-      - name: update
-        description: update list of Go versions from website
-        function: ___gomgr_update
       - name: upgrade
         description: upgrade all currently cached Go versions
         function: ___gomgr_upgrade
