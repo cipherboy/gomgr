@@ -1,0 +1,48 @@
+---
+name: gomgr
+description: a binary Go Toolchain version manager
+arguments:
+  - name: cmd
+    description: gomgr command to run
+    type: Subparser
+    whitelist:
+      - name: update
+        description: update list of Go versions from website
+        function: ___gomgr_update
+      - name: upgrade
+        description: upgrade all currently cached Go versions
+        function: ___gomgr_upgrade
+      - name: fetch
+        description: fetch a specific Go version to the local cache
+        function: ___gomgr_fetch
+        arguments:
+          - name: version
+            description: Go version to fetch
+        grammar:
+          - "[options]"
+          - "arguments.version"
+      - name: enable
+        alises:
+          - switch
+        description: enable (or switch) to a specific Go version
+        function: ___gomgr_enable
+        arguments:
+          - name: version
+            description: Go version to enable
+        grammar:
+          - "[options]"
+          - "arguments.version"
+      - name: clean
+        description: clean $GOROOT and remove all downloaded packages
+        function: ___gomgr_clean
+        mixed_options_arguments: true
+        grammar:
+          - "[options]"
+mixed_options_arguments: false
+catch_remainder: true
+remainder: _gomgr_cmd_args
+function: _gomgr
+grammar:
+  - "[options]"
+  - "arguments.cmd"
+  - "[vars._gomgr_cmd_args...]"
