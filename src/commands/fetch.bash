@@ -22,14 +22,15 @@ function ___gomgr_fetch() {
         local file="$identifier.$ext"
         local file_path="$_gomgr_releases/$file"
 
-        wget --quiet --no-verbose --output-document="$file_path" "$_gomgr_web_dl/$file"
+        wget --no-verbose --output-document="$file_path" "$_gomgr_web_dl/$file"
         ret=$?
 
         if (( ret != 0 )); then
+            rm -f "$file_path"
             continue
         fi
 
-        if [ ! -s "$file_path" ] || grep -q '404' "$file_path"; then
+        if [ ! -s "$file_path" ]; then
             rm -f "$file_path"
             continue
         fi
