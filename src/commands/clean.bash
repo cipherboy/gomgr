@@ -12,4 +12,5 @@ function ___gomgr_clean() {
     fi
 
     mkdir -pv "$gopath/"{bin,src}
+    go clean -cache -modcache
 }
