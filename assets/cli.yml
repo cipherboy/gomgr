@@ -6,9 +6,6 @@ arguments:
     description: gomgr command to run
     type: Subparser
     whitelist:
-      - name: upgrade
-        description: upgrade all currently cached Go versions
-        function: ___gomgr_upgrade
       - name: fetch
         description: fetch a specific Go version to the local cache
         function: ___gomgr_fetch
@@ -29,6 +26,11 @@ arguments:
         grammar:
           - "[options]"
           - "arguments.version"
+      - name: disable
+        description: disable the current Go version
+        function: ___gomgr_disable
+        grammar:
+          - "[options]"
       - name: clean
         description: clean \$GOROOT and remove all downloaded packages
         function: ___gomgr_clean
@@ -39,11 +41,6 @@ arguments:
         description: list Go versions on the system
         function: ___gomgr_list
         mixed_options_arguments: true
-        grammar:
-          - "[options]"
-      - name: disable
-        description: disable the current Go version
-        function: ___gomgr_disable
         grammar:
           - "[options]"
 mixed_options_arguments: false
