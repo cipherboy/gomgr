@@ -32,7 +32,7 @@ function ___gomgr_enable() {
         exit 1
     fi
 
-    if [ -e "$__gomgr_install_root/go" ]; then
+    if [ -e "$_gomgr_install_root/go" ]; then
         echo "Removing existing installation root: $_gomgr_install_root/go"
         sudo rm -rf "$_gomgr_install_root/go"
     fi
