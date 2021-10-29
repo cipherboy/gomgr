@@ -12,6 +12,7 @@ function gomgr() {
 
   # [ stage: commands ] #
   . commands/clean.bash
+  . commands/disable.bash
   . commands/enable.bash
   . commands/fetch.bash
   . commands/list.bash

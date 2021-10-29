@@ -41,6 +41,11 @@ arguments:
         mixed_options_arguments: true
         grammar:
           - "[options]"
+      - name: disable
+        description: disable the current Go version
+        function: ___gomgr_disable
+        grammar:
+          - "[options]"
 mixed_options_arguments: false
 catch_remainder: true
 remainder: _gomgr_cmd_args
