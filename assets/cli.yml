@@ -35,6 +35,12 @@ arguments:
         mixed_options_arguments: true
         grammar:
           - "[options]"
+      - name: list
+        description: list Go versions on the system
+        function: ___gomgr_list
+        mixed_options_arguments: true
+        grammar:
+          - "[options]"
 mixed_options_arguments: false
 catch_remainder: true
 remainder: _gomgr_cmd_args
