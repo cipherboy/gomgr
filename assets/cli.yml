@@ -30,7 +30,7 @@ arguments:
           - "[options]"
           - "arguments.version"
       - name: clean
-        description: clean $GOROOT and remove all downloaded packages
+        description: clean \$GOROOT and remove all downloaded packages
         function: ___gomgr_clean
         mixed_options_arguments: true
         grammar:
