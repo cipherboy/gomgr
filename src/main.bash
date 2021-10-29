@@ -16,7 +16,7 @@ function gomgr() {
   . commands/enable.bash
   . commands/fetch.bash
   . commands/list.bash
-  . commands/upgrade.bash
+  . commands/remove.bash
 
   # [ stage: core ] #
 

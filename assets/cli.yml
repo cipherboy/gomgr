@@ -15,6 +15,15 @@ arguments:
         grammar:
           - "[options]"
           - "arguments.version"
+      - name: remove
+        description: remove a specific Go version from the local cache
+        function: ___gomgr_remove
+        arguments:
+          - name: version
+            description: Go version to enable
+        grammar:
+          - "[options]"
+          - "arguments.version"
       - name: enable
         alises:
           - switch
