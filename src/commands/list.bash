@@ -1,4 +1,11 @@
 function ___gomgr_list() {
+    ___gomgr_list_parse_args "$@"
+    ret=$?
+
+    if (( ret != 0 )); then
+        return $ret
+    fi
+
     local go_version="$(go version 2>/dev/null | awk '{ print $3 }' | sed 's/^go//g')"
     local go_path="$(command -v go)"
     local go_installed_path="/usr/local/go/bin/go"
