@@ -22,7 +22,7 @@ function ___gomgr_fetch() {
         local file="$identifier.$ext"
         local file_path="$_gomgr_releases/$file"
 
-        wget --no-verbose --output-document="$file_path" "$_gomgr_web_dl/$file"
+        local wget_output="$(wget --no-verbose --output-document="$file_path" "$_gomgr_web_dl/$file" 2>&1)"
         ret=$?
 
         if (( ret != 0 )); then
@@ -35,6 +35,8 @@ function ___gomgr_fetch() {
             continue
         fi
 
+        echo "$wget_output"
+
         local remote_sha256="$(curl -sSL "$_gomgr_web_dl/$file.sha256")"
         local local_sha256="$(sha256sum "$file_path" | awk '{ print $1 }')"
 
@@ -46,6 +48,7 @@ function ___gomgr_fetch() {
             exit 1
         fi
 
+        echo "Checksum: OK"
         break
     done
 }
