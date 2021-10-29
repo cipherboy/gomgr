@@ -10,7 +10,7 @@ function ___gomgr_list() {
     local go_path="$(command -v go)"
     local go_installed_path="/usr/local/go/bin/go"
 
-    if [ "$go_path" != "$go_installed_path" ]; then
+    if [ ! -z "$go_path" ] && [ "$go_path" != "$go_installed_path" ]; then
         echo "go$go_version (system) (enabled)"
         echo "---"
     elif [ -e /usr/bin/go ]; then
