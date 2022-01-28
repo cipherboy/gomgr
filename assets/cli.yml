@@ -9,6 +9,12 @@ arguments:
       - name: fetch
         description: fetch a specific Go version to the local cache
         function: ___gomgr_fetch
+        options:
+          - name: boringcrypto
+            short: fips
+            var: fips
+            type: FalseTrue
+            description: Fetch the BoringCrypto (FIPS) version of Go
         arguments:
           - name: version
             description: Go version to fetch

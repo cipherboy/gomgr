@@ -22,7 +22,7 @@ function ___gomgr_list() {
     for _entry in "$_gomgr_releases/"*; do
         local entry="$(basename "$_entry")"
         echo -n "$entry (cache)"
-        if [ "$go_path" = "$go_installed_path" ] && [[ "$entry" = *"$go_version"* ]]; then
+        if [ "$go_path" = "$go_installed_path" ] && [[ "$entry" = *"$go_version."* ]]; then
             echo -n " (enabled)"
         fi
         echo
