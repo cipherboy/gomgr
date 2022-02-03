@@ -49,7 +49,7 @@ function __gomgr_fetch_nonfips() {
 
         echo "$wget_output"
 
-        local remote_sha256="$(curl -sSL "$_gomgr_web_dl/$file.sha256")"
+        local remote_sha256="$(wget --no-verbose --output-document=- "$_gomgr_web_dl/$file.sha256")"
         local local_sha256="$(sha256sum "$file_path" | awk '{ print $1 }')"
 
         if [ "$remote_sha256" != "$local_sha256" ]; then
@@ -93,7 +93,7 @@ function __gomgr_fetch_fips() {
             break
         fi
 
-        local remote_sha256="$(curl -sSL "$_gomgr_fips_checksums" | grep "^go$version " | grep 'linux-amd64' | awk '{print $5}')"
+        local remote_sha256="$(wget --no-verbose --output-document=- "$_gomgr_fips_checksums" | grep "^go$version " | grep 'linux-amd64' | awk '{print $5}')"
         local local_sha256="$(sha256sum "$file_path" | awk '{ print $1 }')"
 
         if [ "$remote_sha256" != "$local_sha256" ]; then
