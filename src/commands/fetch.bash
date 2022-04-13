@@ -29,6 +29,7 @@ function ___gomgr_fetch() {
 
 function __gomgr_fetch_nonfips() {
     local identifier="$1"
+    local found="false"
 
     for ext in "tar.xz" "tar.bz2" "tar.gz" "zip"; do
         local file="$identifier.$ext"
@@ -48,6 +49,7 @@ function __gomgr_fetch_nonfips() {
         fi
 
         echo "$wget_output"
+        found="true"
 
         local remote_sha256="$(wget --no-verbose --output-document=- "$_gomgr_web_dl/$file.sha256")"
         local local_sha256="$(sha256sum "$file_path" | awk '{ print $1 }')"
@@ -63,11 +65,16 @@ function __gomgr_fetch_nonfips() {
         echo "Checksum: OK"
         break
     done
+
+    if [ "$found" = "false" ]; then
+        return 1
+    fi
 }
 
 function __gomgr_fetch_fips() {
     local version="$1"
     local identifier="$2"
+    local found="false"
 
     for ext in "tar.xz" "tar.bz2" "tar.gz" "zip"; do
         local file="$identifier.$ext"
@@ -87,6 +94,7 @@ function __gomgr_fetch_fips() {
         fi
 
         echo "$wget_output"
+        found="true"
 
         if [ -z "$_gomgr_fips_checksums" ]; then
             echo "Checksum: skipped"
@@ -107,4 +115,8 @@ function __gomgr_fetch_fips() {
         echo "Checksum: OK"
         break
     done
+
+    if [ "$found" = "false" ]; then
+        return 1
+    fi
 }
